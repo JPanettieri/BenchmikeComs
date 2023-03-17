@@ -56,6 +56,8 @@ namespace BenchmikeComs
             this.cbPex = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnSendAll = new System.Windows.Forms.Button();
+            this.txtNoise = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtReceive
@@ -277,11 +279,29 @@ namespace BenchmikeComs
             this.btnSendAll.UseVisualStyleBackColor = true;
             this.btnSendAll.Click += new System.EventHandler(this.btnSendAll_Click);
             // 
+            // txtNoise
+            // 
+            this.txtNoise.Location = new System.Drawing.Point(685, 59);
+            this.txtNoise.Name = "txtNoise";
+            this.txtNoise.Size = new System.Drawing.Size(72, 20);
+            this.txtNoise.TabIndex = 24;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(682, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Noise";
+            // 
             // BenchmikeComTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtNoise);
             this.Controls.Add(this.btnSendAll);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbPex);
@@ -336,6 +356,8 @@ namespace BenchmikeComs
         private System.Windows.Forms.ComboBox cbPex;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnSendAll;
+        private System.Windows.Forms.TextBox txtNoise;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -150,6 +151,7 @@ namespace BenchmikeComs
 
         private void btnSendAll_Click(object sender, EventArgs e)
         {
+            Stopwatch timer = new Stopwatch();
             try
             {
                 foreach (var item in cbPex.Items)
@@ -162,10 +164,22 @@ namespace BenchmikeComs
                         txtSend.Refresh();
                         port.Write(txtSend.Text);
                     }
-                    while (dataRecieved == false)
+                    timer.Start();
+                    while (dataRecieved == false && timer.Elapsed.TotalSeconds < 10)
                     {
                         string data = port.ReadExisting();
                         OutputUpdateCallback(data);
+                    }
+                    timer.Stop();
+                    timer.Reset();
+                    if (dataRecieved == false)
+                    {
+                        while (txtReceive.Text != "Test Failed")
+                        {
+                            txtReceive.Text = "Test Failed";
+                            txtReceive.Refresh();
+                        }
+                        break;
                     }
                     txtReceive.Refresh();
                 }
@@ -179,12 +193,16 @@ namespace BenchmikeComs
 
         private void txtReceive_TextChanged(object sender, EventArgs e)
         {
-            if(txtReceive.Text.Contains("\r") == false && txtReceive.Text != "")
+            if (txtReceive.Text.Contains("\r") == false && txtReceive.Text != "")
             {
                 dataRecieved = true;
             }
             else if (txtReceive.Text.Contains("\r"))
-            { txtReceive.Text = ""; }
+            { 
+                txtNoise.Text = txtReceive.Text;
+                txtNoise.Text += " r";
+                txtReceive.Text = ""; 
+            }
         }
     }
 
