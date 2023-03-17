@@ -55,6 +55,7 @@ namespace BenchmikeComs
             this.btnClose = new System.Windows.Forms.Button();
             this.cbPex = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnSendAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtReceive
@@ -63,6 +64,7 @@ namespace BenchmikeComs
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.Size = new System.Drawing.Size(338, 20);
             this.txtReceive.TabIndex = 0;
+            this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
             // 
             // txtSend
             // 
@@ -265,11 +267,22 @@ namespace BenchmikeComs
             this.label8.TabIndex = 22;
             this.label8.Text = "PexMeasure Test";
             // 
+            // btnSendAll
+            // 
+            this.btnSendAll.Location = new System.Drawing.Point(418, 240);
+            this.btnSendAll.Name = "btnSendAll";
+            this.btnSendAll.Size = new System.Drawing.Size(75, 23);
+            this.btnSendAll.TabIndex = 23;
+            this.btnSendAll.Text = "Send All";
+            this.btnSendAll.UseVisualStyleBackColor = true;
+            this.btnSendAll.Click += new System.EventHandler(this.btnSendAll_Click);
+            // 
             // BenchmikeComTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSendAll);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbPex);
             this.Controls.Add(this.btnClose);
@@ -322,6 +335,7 @@ namespace BenchmikeComs
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ComboBox cbPex;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnSendAll;
     }
 }
 

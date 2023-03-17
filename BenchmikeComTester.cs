@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO.Ports;
-using System.Text;
 using System.Windows.Forms;
 
 
@@ -12,6 +7,7 @@ namespace BenchmikeComs
 {
     public partial class BenchmikeComTester : Form
     {
+        bool dataRecieved = false;
         public BenchmikeComTester()
         {
             InitializeComponent();
@@ -24,20 +20,17 @@ namespace BenchmikeComs
             txtReceive.Text += data;
         }
 
+        
+
         private void DataRec
-        (object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        (object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
                 string data = port.ReadExisting();
-                //txtreceive.Text += data;     
-                //Not good as Serialport is a different Thread
-                //OutputUpdateCallback(data);  //call directly will not work
-
-                //You need to use the Invoke Method and pass the delegate and data
                 txtReceive.Invoke(new OutputUpdateDelegate(OutputUpdateCallback), data);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -153,6 +146,45 @@ namespace BenchmikeComs
         private void cbPex_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSend.Text = cbPex.Text;
+        }
+
+        private void btnSendAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var item in cbPex.Items)
+                {
+                    txtReceive.Text = "";
+                    dataRecieved = false;
+                    while (txtSend.Text != item.ToString())
+                    {
+                        txtSend.Text = item.ToString();
+                        txtSend.Refresh();
+                        port.Write(txtSend.Text);
+                    }
+                    while (dataRecieved == false)
+                    {
+                        string data = port.ReadExisting();
+                        OutputUpdateCallback(data);
+                    }
+                    txtReceive.Refresh();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void txtReceive_TextChanged(object sender, EventArgs e)
+        {
+            if(txtReceive.Text.Contains("\r") == false && txtReceive.Text != "")
+            {
+                dataRecieved = true;
+            }
+            else if (txtReceive.Text.Contains("\r"))
+            { txtReceive.Text = ""; }
         }
     }
 
