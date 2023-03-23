@@ -22,6 +22,7 @@ namespace BenchmikeComs
         private void OutputUpdateCallback(string data)
         {
             txtReceive.Text += data;
+            rchTxtIn.Text += data;
         }
 
         private void DataRec
@@ -30,11 +31,6 @@ namespace BenchmikeComs
             try
             {
                 string data = port.ReadExisting();
-                //txtreceive.Text += data;     
-                //Not good as Serialport is a different Thread
-                //OutputUpdateCallback(data);  //call directly will not work
-
-                //You need to use the Invoke Method and pass the delegate and data
                 txtReceive.Invoke(new OutputUpdateDelegate(OutputUpdateCallback), data);
             }
             catch (System.Exception ex)
@@ -47,13 +43,14 @@ namespace BenchmikeComs
         {
             try
             {
-                port.Write(txtSend.Text);
+                string message = txtSend.Text + "\r";
+                byte[] data = Encoding.ASCII.GetBytes(message);
+                port.Write(data, 0, data.Length);
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void btn_open_Click(object sender, EventArgs e)

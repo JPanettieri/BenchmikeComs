@@ -55,6 +55,7 @@ namespace BenchmikeComs
             this.btnClose = new System.Windows.Forms.Button();
             this.cbPex = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.rchTxtIn = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // txtReceive
@@ -66,14 +67,14 @@ namespace BenchmikeComs
             // 
             // txtSend
             // 
-            this.txtSend.Location = new System.Drawing.Point(319, 113);
+            this.txtSend.Location = new System.Drawing.Point(319, 238);
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(338, 20);
             this.txtSend.TabIndex = 1;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(319, 240);
+            this.btnSend.Location = new System.Drawing.Point(319, 365);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 2;
@@ -119,7 +120,7 @@ namespace BenchmikeComs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(319, 94);
+            this.label2.Location = new System.Drawing.Point(319, 219);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 6;
@@ -250,7 +251,7 @@ namespace BenchmikeComs
             "CONF.SER.FORMAT.HEADER:EXCLAM",
             "CONF.SER.FORMAT.LABEL:OFF",
             "MEAS.START.NOW"});
-            this.cbPex.Location = new System.Drawing.Point(319, 176);
+            this.cbPex.Location = new System.Drawing.Point(319, 301);
             this.cbPex.Name = "cbPex";
             this.cbPex.Size = new System.Drawing.Size(338, 21);
             this.cbPex.TabIndex = 21;
@@ -259,17 +260,26 @@ namespace BenchmikeComs
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(319, 160);
+            this.label8.Location = new System.Drawing.Point(319, 285);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 13);
             this.label8.TabIndex = 22;
             this.label8.Text = "PexMeasure Test";
+            // 
+            // rchTxtIn
+            // 
+            this.rchTxtIn.Location = new System.Drawing.Point(319, 86);
+            this.rchTxtIn.Name = "rchTxtIn";
+            this.rchTxtIn.Size = new System.Drawing.Size(338, 130);
+            this.rchTxtIn.TabIndex = 23;
+            this.rchTxtIn.Text = "";
             // 
             // BenchmikeComTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rchTxtIn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbPex);
             this.Controls.Add(this.btnClose);
@@ -322,6 +332,7 @@ namespace BenchmikeComs
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ComboBox cbPex;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox rchTxtIn;
     }
 }
 
