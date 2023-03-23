@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -19,11 +20,20 @@ namespace BenchmikeComs
         private void OutputUpdateCallback(string data)
         {
             txtReceive.Text += data;
+            if (txtReceive.Text.Contains("\u0006"))
+            {
+                txtAck.Text += data;
+                dataRecieved = true;
+            }
+            else
+            {
+                rchTxtFail.Text += data;
+            }
         }
 
         
 
-        private void DataRec
+        public void DataRec
         (object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -41,15 +51,23 @@ namespace BenchmikeComs
         {
             try
             {
-                port.Write(txtSend.Text);
+                string message = txtSend.Text + "\r";
+                byte[] data = Encoding.ASCII.GetBytes(message);
+                port.Write(data, 0, data.Length);
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
-
+        private void Defaut_Click(object sender, EventArgs e)
+        {
+            txtBaud.Text = "19200";
+            cbParity.SelectedIndex = 0;
+            cbDataBits.SelectedIndex = 0;
+            cbHandshaking.SelectedIndex = 0;
+            txtCom.Text = "COM3";
+        }
         private void btn_open_Click(object sender, EventArgs e)
         {
             int baud;
@@ -70,7 +88,7 @@ namespace BenchmikeComs
 
         }
 
-        private void btnListen_Click(object sender, EventArgs e)
+        public void btnListen_Click(object sender, EventArgs e)
         {
             port.DataReceived += new SerialDataReceivedEventHandler(DataRec);
 
@@ -149,6 +167,17 @@ namespace BenchmikeComs
             txtSend.Text = cbPex.Text;
         }
 
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadExisting();
+            if (data.Contains("\u0006"))
+            {
+                dataRecieved = true;
+            }
+        }
+
+
         private void btnSendAll_Click(object sender, EventArgs e)
         {
             Stopwatch timer = new Stopwatch();
@@ -162,14 +191,17 @@ namespace BenchmikeComs
                     {
                         txtSend.Text = item.ToString();
                         txtSend.Refresh();
-                        port.Write(txtSend.Text);
+                        string message = txtSend.Text + "\r";
+                        byte[] data = Encoding.ASCII.GetBytes(message);
+                        port.Write(data, 0, data.Length);
                     }
                     timer.Start();
+                    port.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
                     while (dataRecieved == false && timer.Elapsed.TotalSeconds < 10)
                     {
-                        string data = port.ReadExisting();
-                        OutputUpdateCallback(data);
+                        Application.DoEvents();
                     }
+                    port.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
                     timer.Stop();
                     timer.Reset();
                     if (dataRecieved == false)
@@ -188,22 +220,16 @@ namespace BenchmikeComs
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
-        private void txtReceive_TextChanged(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            if (txtReceive.Text.Contains("\r") == false && txtReceive.Text != "")
-            {
-                dataRecieved = true;
-            }
-            else if (txtReceive.Text.Contains("\r"))
-            { 
-                txtNoise.Text = txtReceive.Text;
-                txtNoise.Text += " r";
-                txtReceive.Text = ""; 
-            }
+            txtReceive.Text = string.Empty;
+            txtSend.Text = string.Empty;
+            txtAck.Text = string.Empty;
         }
+
+
     }
 
 
