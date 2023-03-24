@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Ports;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace BenchmikeComs
@@ -14,6 +17,19 @@ namespace BenchmikeComs
         {
             InitializeComponent();
 
+        }
+        public void SaveLog()
+        {
+            string fileCreator = "Benchmike test " + DateTime.Now.ToString("mm") + DateTime.Now.ToString("ss") + ".txt";
+            TextWriter txt = new StreamWriter(String.Format("C:\\Users\\joshu\\OneDrive\\Desktop\\{0}", fileCreator));
+            txt.Write("New Test" + DateTime.Now.ToString("d") + "\n");
+            txt.Write("Data Recieved \n");
+            txt.Write(txtReceive.Text);
+            txt.Write("Acknowledge respose \n");
+            txt.Write(txtAck.Text);
+            txt.Write("Unexpected response \n");
+            txt.Write(txtFail.Text);
+            txt.Close();
         }
 
         delegate void OutputUpdateDelegate(string data);
@@ -27,7 +43,7 @@ namespace BenchmikeComs
             }
             else
             {
-                rchTxtFail.Text += data;
+                txtFail.Text += data;
             }
         }
 
@@ -215,6 +231,9 @@ namespace BenchmikeComs
                     }
                     txtReceive.Refresh();
                 }
+                System.Threading.Thread.Sleep(45000);
+                Application.DoEvents();
+                SaveLog();
             }
             catch (System.Exception ex)
             {
@@ -227,6 +246,11 @@ namespace BenchmikeComs
             txtReceive.Text = string.Empty;
             txtSend.Text = string.Empty;
             txtAck.Text = string.Empty;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveLog();
         }
 
 

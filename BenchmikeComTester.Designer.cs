@@ -60,8 +60,9 @@ namespace BenchmikeComs
             this.txtAck = new System.Windows.Forms.RichTextBox();
             this.Defaut = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.rchTxtFail = new System.Windows.Forms.RichTextBox();
+            this.txtFail = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtSend
@@ -322,14 +323,14 @@ namespace BenchmikeComs
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // rchTxtFail
+            // txtFail
             // 
-            this.rchTxtFail.Font = new System.Drawing.Font("Unifont", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rchTxtFail.Location = new System.Drawing.Point(618, 228);
-            this.rchTxtFail.Name = "rchTxtFail";
-            this.rchTxtFail.Size = new System.Drawing.Size(103, 134);
-            this.rchTxtFail.TabIndex = 31;
-            this.rchTxtFail.Text = "";
+            this.txtFail.Font = new System.Drawing.Font("Unifont", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFail.Location = new System.Drawing.Point(618, 228);
+            this.txtFail.Name = "txtFail";
+            this.txtFail.Size = new System.Drawing.Size(103, 134);
+            this.txtFail.TabIndex = 31;
+            this.txtFail.Text = "";
             // 
             // label10
             // 
@@ -340,12 +341,23 @@ namespace BenchmikeComs
             this.label10.TabIndex = 30;
             this.label10.Text = "Failed Msg";
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(351, 381);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 32;
+            this.btnSave.Text = "Save Log";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // BenchmikeComTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.rchTxtFail);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.txtFail);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.Defaut);
@@ -408,8 +420,9 @@ namespace BenchmikeComs
         private System.Windows.Forms.RichTextBox txtAck;
         private System.Windows.Forms.Button Defaut;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.RichTextBox rchTxtFail;
+        private System.Windows.Forms.RichTextBox txtFail;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
