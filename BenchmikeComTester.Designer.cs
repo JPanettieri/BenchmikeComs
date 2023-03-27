@@ -67,9 +67,10 @@ namespace BenchmikeComs
             // 
             // txtSend
             // 
+            this.txtSend.Font = new System.Drawing.Font("Unifont", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSend.Location = new System.Drawing.Point(252, 212);
             this.txtSend.Name = "txtSend";
-            this.txtSend.Size = new System.Drawing.Size(338, 20);
+            this.txtSend.Size = new System.Drawing.Size(338, 28);
             this.txtSend.TabIndex = 1;
             // 
             // btnSend
@@ -245,6 +246,7 @@ namespace BenchmikeComs
             // 
             // cbPex
             // 
+            this.cbPex.Font = new System.Drawing.Font("Unifont", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPex.FormattingEnabled = true;
             this.cbPex.Items.AddRange(new object[] {
             "MEAS.CLEARALL.NOW",
@@ -253,7 +255,7 @@ namespace BenchmikeComs
             "MEAS.START.NOW"});
             this.cbPex.Location = new System.Drawing.Point(252, 275);
             this.cbPex.Name = "cbPex";
-            this.cbPex.Size = new System.Drawing.Size(338, 21);
+            this.cbPex.Size = new System.Drawing.Size(338, 27);
             this.cbPex.TabIndex = 21;
             this.cbPex.SelectedIndexChanged += new System.EventHandler(this.cbPex_SelectedIndexChanged);
             // 
@@ -287,7 +289,7 @@ namespace BenchmikeComs
             // 
             // txtReceive
             // 
-            this.txtReceive.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceive.Font = new System.Drawing.Font("Unifont", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReceive.Location = new System.Drawing.Point(255, 59);
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.Size = new System.Drawing.Size(335, 131);
