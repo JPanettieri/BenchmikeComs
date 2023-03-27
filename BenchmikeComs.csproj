@@ -105,6 +105,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="unifont-15.0.01.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
